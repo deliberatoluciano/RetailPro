@@ -41,3 +41,9 @@ FROM (
     FROM ventas
     GROUP BY MONTH(fecha_venta)
 ) AS resumen_mensual;
+
+
+-- Bloque de cierre - Hallazgos
+-- 1. El mes 3 concentró toda la facturación registrada, con un total de $6444 y un ticket promedio de $644,40.
+-- 2. El producto 1 fue el más vendido, con 3600 de facturación, representando aproximadamente el 56% del total mensual.
+-- 3. El cliente 1 fue el que más gastó entre los clientes recurrentes, con un total de $2640, equivalente a aproximadamente el 41% de la facturación mensual.
