@@ -21,3 +21,15 @@ from dbo.clientes c
 left join dbo.ventas v
 on c.id_cliente = v.id_cliente
 where v.id_cliente is null 
+
+--Consulta 3 --
+select
+p.nombre_producto,
+t.nombre_categoria,
+p.precio
+from dbo.productos p
+left join dbo.ventas v
+on p.id_producto = v.id_producto
+inner join dbo.categorias t
+on t.id_categoria = p.id_categoria
+where v.id_producto is null 
