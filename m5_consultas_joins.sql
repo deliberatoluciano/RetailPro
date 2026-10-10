@@ -11,3 +11,13 @@ inner join dbo.productos p
 on p.id_producto = v.id_producto 
 inner join dbo.clientes c
 on c.id_cliente = v.id_cliente
+
+--Consulta 2 --
+select
+c.nombre as 'nombre_cliente',
+c.email,
+c.fecha_registro
+from dbo.clientes c
+left join dbo.ventas v
+on c.id_cliente = v.id_cliente
+where v.id_cliente is null 
