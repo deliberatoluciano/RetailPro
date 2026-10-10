@@ -33,3 +33,20 @@ on p.id_producto = v.id_producto
 inner join dbo.categorias t
 on t.id_categoria = p.id_categoria
 where v.id_producto is null 
+
+-- Consulta 4 --
+SELECT canal, SUM(total) AS total_canal
+FROM (
+    -- Primer subconjunto: Ventas consideradas 'Online' (ej. cantidad mayor a 2)
+    SELECT fecha_venta, (cantidad * precio_unitario) AS total, 'Online' AS canal
+    FROM dbo.ventas
+    WHERE cantidad > 2
+    
+    UNION ALL
+    
+    -- Segundo subconjunto: Ventas consideradas 'Presencial' (ej. cantidad menor o igual a 2)
+    SELECT fecha_venta, (cantidad * precio_unitario) AS total, 'Presencial' AS canal
+    FROM dbo.ventas
+    WHERE cantidad <= 2
+) AS consolidado
+GROUP BY canal;
